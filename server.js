@@ -14,6 +14,11 @@ app.use(logger('dev'))
 //set the public folder as the static assets server folder
 app.use(express.static('public'))
 
+//route to display movies as json
+app.get('/movies', function(req, res) {
+	res.json(movies)
+})
+
 //starts server
 app.listen(port, function() {
 	console.log('Listening on port', port)

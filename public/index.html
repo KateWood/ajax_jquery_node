@@ -2,8 +2,26 @@
 <html>
 <head>
 	<title>AJAX</title>
+
+	<!-- javascript links -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
 	<h1>Welcome to my Movies App</h1>
+	<button type="button" id="get-movies">Get Movies</button>
+	<div class="all-movies">
+	</div>
+	<script type="text/javascript">
+		$('#get-movies').on('click', function(evt) {
+			$.ajax({
+				url: '/movies',
+				method: 'GET',
+				success: function(data){
+					console.log(data)
+					$('.all-movies').text(data)
+				}
+			})	
+		})
+	</script>
 </body>
 </html>

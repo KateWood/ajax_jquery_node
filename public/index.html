@@ -8,6 +8,8 @@
 
 	<!-- javascript links -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </head>
 <body>
 	<h1>Welcome to my Movies App</h1>
@@ -34,7 +36,9 @@
 							url: '/movies/' + evt.target.id,
 							method: 'GET',
 							success: function(data) {
-								console.log(data)
+								var movie = data[0]
+								var details = 'movie:' + movie.name + ', rating:' + movie.rating + ', views:' + movie.views + ', running_time:' + movie.running_time + ', genres:' + movie.genres
+								alert(details)
 							}
 						})
 					})

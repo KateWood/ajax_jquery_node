@@ -11,6 +11,15 @@ function index(req, res) {
 	})
 }
 
+//show action
+function show(req, res) {
+	Movie.find({_id: req.params.id}, function(err, movie) {
+		if (err) throw err
+		res.json(movie)
+	})
+}
+
 module.exports = {
-	index: index
+	index: index,
+	show: show
 }

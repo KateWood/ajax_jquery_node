@@ -6,4 +6,7 @@ var moviesController 	= require('../controllers/movies_controller.js'),
 movieRoutes.route('/')
 	.get(moviesController.index)
 
+movieRoutes.route('/:id')
+	.get(moviesController.show)
+
 module.exports = movieRoutes

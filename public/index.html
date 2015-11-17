@@ -3,6 +3,9 @@
 <head>
 	<title>AJAX</title>
 
+	<!-- stylesheets -->
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
 	<!-- javascript links -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
@@ -18,10 +21,23 @@
 				method: 'GET',
 				success: function(data){
 					console.log(data)
-					$('.all-movies').text(data.forEach(function(movie) {
-						var li = '<li>' + movie.name + ' - ' + movie.rating + '</li>'
+					data.forEach(function(movie) {
+						var nameSpan = '<span class="movie-name">' + movie.name + '</span>'
+						var ratingSpan = '<span class="movie-rating">' + movie.rating + '</span>'
+						var showDetails = ' <button id="' + movie._id + '" class="show-details">Show Details</button>'
+						var li = '<li>' + nameSpan + ' - ' + ratingSpan + showDetails + '</li>'
 						$('.all-movies').append(li)
-					}))
+					})
+					$('.show-details').on('click', function(evt) {
+						console.log(evt.target.id)
+						$.ajax({
+							url: '/movies/' + evt.target.id,
+							method: 'GET',
+							success: function(data) {
+								console.log(data)
+							}
+						})
+					})
 				}
 			})	
 		})

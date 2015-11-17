@@ -9,8 +9,8 @@
 <body>
 	<h1>Welcome to my Movies App</h1>
 	<button type="button" id="get-movies">Get Movies</button>
-	<div class="all-movies">
-	</div>
+	<ul class="all-movies">
+	</ul>
 	<script type="text/javascript">
 		$('#get-movies').on('click', function(evt) {
 			$.ajax({
@@ -18,7 +18,10 @@
 				method: 'GET',
 				success: function(data){
 					console.log(data)
-					$('.all-movies').text(data)
+					$('.all-movies').text(data.forEach(function(movie) {
+						var li = '<li>' + movie.name + ' - ' + movie.rating + '</li>'
+						$('.all-movies').append(li)
+					}))
 				}
 			})	
 		})
